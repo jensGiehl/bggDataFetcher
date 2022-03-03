@@ -6,9 +6,37 @@
 	<artifactId>BggDataFetcher</artifactId>
 	<version>0.0.1</version>
 
+	<name>BoardgameGeek.com Data Fetcher</name>
+	<description>A pure java lib to fetch data from boardgamegeek.com</description>
+	<url>https://github.com/jensGiehl/bggDataFetcher</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Jens Giehl</name>
+			<organizationUrl>https://github.com/jensGiehl</organizationUrl>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<repository>
+			<id>ossrh</id>
+			<name>Central Repository OSSRH</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
+		<maven-source-plugin.version>3.2.0</maven-source-plugin.version>
+		<maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
 		<lombok.version>1.18.22</lombok.version>
 		<jackson.version>2.13.1</jackson.version>
 	</properties>
@@ -36,6 +64,32 @@
 				<configuration>
 					<release>${maven.compiler.release}</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
