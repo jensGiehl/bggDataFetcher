@@ -1,0 +1,54 @@
+package de.agiehl.bgg.model.collection;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class Item {
+
+	@JacksonXmlProperty(isAttribute = true)
+	private String objecttype;
+
+	@JacksonXmlProperty(isAttribute = true)
+	private long objectid;
+
+	@JacksonXmlProperty(isAttribute = true)
+	private String subtype;
+
+	@JacksonXmlProperty(isAttribute = true)
+	private long collid;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private Name name;
+
+	@JacksonXmlElementWrapper(useWrapping = true)
+	private String originalname;
+
+	@JacksonXmlElementWrapper(useWrapping = true)
+	private int yearpublished;
+
+	@JacksonXmlElementWrapper(useWrapping = true)
+	private String image;
+
+	@JacksonXmlElementWrapper(useWrapping = true)
+	private String thumbnail;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private Stats stats;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private Status status;
+
+	@JacksonXmlElementWrapper(useWrapping = true)
+	private long numplays;
+
+	@JacksonXmlElementWrapper(useWrapping = true)
+	private String comment;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private Version version;
+}
