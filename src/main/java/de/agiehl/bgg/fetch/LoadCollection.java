@@ -1,40 +1,38 @@
 package de.agiehl.bgg.fetch;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
+import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
 @Log
+@AllArgsConstructor
 public class LoadCollection {
+
+	private final HttpFetch httpFetch;
 
 	public Items loadCollectionOfBggUser(String username, Subtypes type) throws Exception {
 		String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8.toString());
-		String url = "https://api.geekdo.com/xmlapi2/collection?version=1&stats=1&showprivate=1&username="
+		String url = "https://boardgamegeek.com/xmlapi2/collection?version=1&stats=1&showprivate=1&username="
 				+ encodedUsername + "&subtype=" + type.name().toLowerCase();
 
-		String content = new HttpFetch().loadFromUrl(url);
-
-		XmlMapper xmlMapper = new XmlMapper();
-		xmlMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		Items items = httpFetch.loadFromUrl(url, Items.class);
 
 		log.info(() -> String.format("Collection for %s loaded", username));
 
-		return xmlMapper.readValue(content, Items.class);
+		return items;
 	}
 
-	public List<Items> loadCollectionForAllSubtypesOfBggUser(String username) throws Exception {
-		List<Items> result = new ArrayList<>();
+	public Map<Subtypes, Items> loadCollectionForAllSubtypesOfBggUser(String username) throws Exception {
+		HashMap<Subtypes, Items> result = new HashMap<>(Subtypes.values().length);
 
 		for (Subtypes subtype : Subtypes.values()) {
-			result.add(loadCollectionOfBggUser(username, subtype));
+			result.put(subtype, loadCollectionOfBggUser(username, subtype));
 		}
 
 		return result;

@@ -2,7 +2,6 @@ package de.agiehl.bgg.model.collection;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -51,4 +50,7 @@ public class Item {
 
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private Version version;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private PrivateInfo privateinfo;
 }

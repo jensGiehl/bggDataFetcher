@@ -26,9 +26,8 @@
 
 	<distributionManagement>
 		<repository>
-			<id>ossrh</id>
-			<name>Central Repository OSSRH</name>
-			<url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
 		</repository>
 	</distributionManagement>
 
@@ -38,7 +37,7 @@
 		<maven-source-plugin.version>3.2.0</maven-source-plugin.version>
 		<maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
 		<lombok.version>1.18.22</lombok.version>
-		<jackson.version>2.13.1</jackson.version>
+		<jackson.version>2.13.2</jackson.version>
 	</properties>
 
 	<dependencies>
