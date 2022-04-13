@@ -18,7 +18,7 @@ public class Poll {
     private String title;
 
     @JacksonXmlProperty(isAttribute = true)
-    private long totalvotes;
+    private Long totalvotes;
 
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<Results> results;

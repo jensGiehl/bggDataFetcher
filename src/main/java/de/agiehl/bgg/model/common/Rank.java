@@ -12,7 +12,7 @@ public class Rank {
 	private String type;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private long id;
+	private Long id;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private String name;

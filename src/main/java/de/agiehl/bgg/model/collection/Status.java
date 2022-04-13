@@ -1,7 +1,6 @@
 package de.agiehl.bgg.model.collection;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,28 +9,28 @@ import lombok.NoArgsConstructor;
 public class Status {
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short own;
+	private Short own;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short prevowned;
+	private Short prevowned;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short fortrade;
+	private Short fortrade;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short want;
+	private Short want;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short wanttoplay;
+	private Short wanttoplay;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short wanttobuy;
+	private Short wanttobuy;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short wishlist;
+	private Short wishlist;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private short preordered;
+	private Short preordered;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private String lastmodified;

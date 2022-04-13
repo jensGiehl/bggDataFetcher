@@ -18,7 +18,7 @@ public class Item {
     private String type;
 
     @JacksonXmlProperty(isAttribute = true)
-    private long id;
+    private Long id;
 
     @JacksonXmlElementWrapper(useWrapping = true)
     private String thumbnail;

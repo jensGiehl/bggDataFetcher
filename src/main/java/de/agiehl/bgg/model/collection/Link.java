@@ -1,7 +1,6 @@
 package de.agiehl.bgg.model.collection;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +12,7 @@ public class Link {
 	private String type;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private long id;
+	private Long id;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private String value;

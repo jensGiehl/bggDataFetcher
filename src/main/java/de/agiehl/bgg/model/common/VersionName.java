@@ -12,7 +12,7 @@ public class VersionName {
 	private String type;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private int sortindex;
+	private Integer sortindex;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private String value;

@@ -20,7 +20,7 @@ public class Item {
 	private String subtype;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private long collid;
+	private Long collid;
 
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private Name name;
@@ -29,7 +29,7 @@ public class Item {
 	private String originalname;
 
 	@JacksonXmlElementWrapper(useWrapping = true)
-	private int yearpublished;
+	private Integer yearpublished;
 
 	@JacksonXmlElementWrapper(useWrapping = true)
 	private String image;
@@ -44,7 +44,7 @@ public class Item {
 	private Status status;
 
 	@JacksonXmlElementWrapper(useWrapping = true)
-	private long numplays;
+	private Long numplays;
 
 	@JacksonXmlElementWrapper(useWrapping = true)
 	private String comment;

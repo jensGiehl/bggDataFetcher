@@ -11,19 +11,19 @@ import lombok.NoArgsConstructor;
 public class Stats {
 
 	@JacksonXmlProperty(isAttribute = true)
-	private int minplayers;
+	private Integer minplayers;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private int maxplayers;
+	private Integer maxplayers;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private int minplaytime;
+	private Integer minplaytime;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private int maxplaytime;
+	private Integer maxplaytime;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private int playingtime;
+	private Integer playingtime;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private long numowned;

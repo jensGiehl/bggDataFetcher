@@ -2,7 +2,6 @@ package de.agiehl.bgg.model.collection;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Name {
 
 	@JacksonXmlProperty(isAttribute = true)
-	private long sortindex;
+	private Long sortindex;
 
 	@JacksonXmlText
 	private String name;
