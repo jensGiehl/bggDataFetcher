@@ -1,19 +1,17 @@
 package de.agiehl.bgg;
 
 import de.agiehl.bgg.config.HttpConfig;
-import de.agiehl.bgg.fetch.BggFetchException;
-import de.agiehl.bgg.fetch.HttpFetch;
-import de.agiehl.bgg.fetch.LoadCollection;
-import de.agiehl.bgg.fetch.Login;
+import de.agiehl.bgg.fetch.*;
 import de.agiehl.bgg.model.Credentials;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
+import de.agiehl.bgg.model.thing.Item;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.http.HttpRequest;
+import java.util.List;
 
 @Getter
 @Log
@@ -27,6 +25,8 @@ public class BggDataFetcher {
 
     private final LoadCollection loadCollectionService;
 
+    private final ThingService thingService;
+
     public BggDataFetcher(HttpConfig httpConfig) {
         this.httpConfig = httpConfig;
 
@@ -34,6 +34,12 @@ public class BggDataFetcher {
 
         loginService = new Login(httpFetch);
         loadCollectionService = new LoadCollection(httpFetch);
+        thingService = new ThingService(httpFetch);
+    }
+
+
+    public List<Item> loadThings(Long... ids) {
+        return thingService.loadThings(ids);
     }
 
     public BggDataFetcher login(Credentials credentials) {
@@ -60,10 +66,5 @@ public class BggDataFetcher {
             throw new BggFetchException(String.format("Couldn't load boardgame collection for user '%s'!", bggUsername), e);
         }
     }
-
-    private HttpRequest.Builder getRequest() {
-        return HttpRequest.newBuilder().timeout(httpConfig.getHttpTimeout());
-    }
-
 
 }

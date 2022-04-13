@@ -2,7 +2,7 @@ package de.agiehl.bgg.model.collection;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
+import de.agiehl.bgg.model.common.Rating;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

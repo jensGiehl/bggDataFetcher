@@ -1,4 +1,4 @@
-package de.agiehl.bgg.model.play;
+package de.agiehl.bgg.model.thing;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import lombok.Data;
@@ -8,9 +8,8 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Subtypes {
+public class Marketplacelistings {
 
-    @JacksonXmlElementWrapper(localName = "subtype", useWrapping = false)
-    private List<Subtype> subtype;
-
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<Listing> listing;
 }

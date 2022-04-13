@@ -1,22 +1,23 @@
-package de.agiehl.bgg.model.collection;
-
-import java.util.List;
+package de.agiehl.bgg.model.common;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
+import de.agiehl.bgg.model.collection.Link;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class VersionItem {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String type;
+    @JacksonXmlProperty(isAttribute = true)
+    private String type;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private long id;
+    @JacksonXmlProperty(isAttribute = true)
+    private long id;
 
 	@JacksonXmlElementWrapper(useWrapping = true)
 	private String thumbnail;
@@ -24,8 +25,8 @@ public class VersionItem {
 	@JacksonXmlElementWrapper(useWrapping = true)
 	private String image;
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private List<Link> link;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<Link> link = new ArrayList<>();
 
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private VersionName name;
@@ -39,13 +40,16 @@ public class VersionItem {
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private ValueObject width;
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private ValueObject length;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private ValueObject length;
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private ValueObject depth;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private ValueObject depth;
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private ValueObject weight;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private ValueObject weight;
 
+    public void setLink(List<Link> link) {
+        this.link.addAll(link);
+    }
 }

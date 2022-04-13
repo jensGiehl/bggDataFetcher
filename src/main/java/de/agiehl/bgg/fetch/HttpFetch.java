@@ -1,7 +1,10 @@
 package de.agiehl.bgg.fetch;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
@@ -37,53 +40,98 @@ public class HttpFetch {
 		xmlMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 	}
 
-	public <T> T loadFromUrl(String url, Class<T> resultType) throws Exception {
+	public <T> T loadFromUrl(String url, Class<T> resultType) {
 		log.fine(() -> "Loading URL: " + url);
 
 		HttpRequest request = HttpRequest.newBuilder() //
-				.uri(new URI(url)) //
+				.uri(getUri(url)) //
 				.GET() //
 				.timeout(timeout)//
 				.build();
 
+		HttpResponse<String> response = retryRequest(request);
+
+		String responseBody = response.body();
+		log.finest(() -> String.format("RAW Response from %s: %s", url, responseBody));
+
+		return mapXmlResult(resultType, responseBody);
+	}
+
+	private <T> T mapXmlResult(Class<T> resultType, String responseBody) {
+		try {
+			return xmlMapper.readValue(responseBody, resultType);
+		} catch (JsonProcessingException e) {
+			throw new BggFetchException("Error while converting result into " + resultType.getName() + ". Response Body: " + responseBody, e);
+		}
+	}
+
+	private HttpResponse<String> retryRequest(HttpRequest request) {
 		HttpResponse<String> response;
 		boolean retry;
 		int retryCounter = 0;
 		do {
 			retry = false;
-			response = httpClient.send(request, BodyHandlers.ofString());
+			response = getHttpResponse(request);
 			log.fine("HTTP Statuscode is: " + response.statusCode());
 
 			if (retryBasedOnStatuscode(response) && retryCounter < maxRetries) {
 				retry = true;
 				retryCounter++;
 				log.info("Waiting for Retry #" + retryCounter);
-				Thread.sleep(Duration.ofSeconds(20).toMillis());
+				waitForNextRetry();
 			}
 		} while (retry);
-
-		String responseBody = response.body();
-		log.finest(() -> String.format("RAW Response from %s: %s", url, responseBody));
-
-		return xmlMapper.readValue(responseBody, resultType);
+		return response;
 	}
 
-	public void fireAndForgotPost(String url, String body) throws URISyntaxException, IOException, InterruptedException {
+	private void waitForNextRetry() {
+		try {
+			Thread.sleep(Duration.ofSeconds(20).toMillis());
+		} catch (InterruptedException e) {
+			throw new BggFetchException("Error while waiting for next retry", e);
+		}
+	}
+
+	private HttpResponse<String> getHttpResponse(HttpRequest request) {
+		try {
+			return httpClient.send(request, BodyHandlers.ofString());
+		} catch (IOException | InterruptedException e) {
+			throw new BggFetchException("Error while loading URI: " + request.uri().toASCIIString(), e);
+		}
+	}
+
+	public void postContent(String url, String body) {
 		HttpRequest request = HttpRequest.newBuilder()
-				.uri(new URI(url))
+				.uri(getUri(url))
 				.header("Content-Type", "application/json")
 				.POST(HttpRequest.BodyPublishers.ofString(body))
 				.build();
 
-		HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
-		if (response.statusCode() != 200 && response.statusCode() != 204) {
+		HttpResponse<String> response = getHttpResponse(request);
+		if (response.statusCode() != HttpStatuscode.OK.code && response.statusCode() != HttpStatuscode.NO_CONTENT.code) {
 			throw new PostException(response.statusCode(), response.body());
+		}
+	}
+
+	private URI getUri(String url) {
+		try {
+			return new URI(url);
+		} catch (URISyntaxException e) {
+			throw new BggFetchException("Error to create URI from " + url, e);
 		}
 	}
 
 	private boolean retryBasedOnStatuscode(HttpResponse<String> response) {
 		int statusCode = response.statusCode();
-		return statusCode == 202 || statusCode == 429;
+		return statusCode == HttpStatuscode.ACCEPTED.getCode() || statusCode == HttpStatuscode.TOO_MANY_REQUESTS.getCode();
+	}
+
+	@AllArgsConstructor
+	@Getter
+	private enum HttpStatuscode {
+		OK(200), ACCEPTED(202), TOO_MANY_REQUESTS(429), NO_CONTENT(204);
+
+		private final int code;
 	}
 
 }

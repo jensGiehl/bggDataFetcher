@@ -18,7 +18,7 @@ public class Login {
 		String json = String.format("{\"credentials\":{\"username\":\"%s\",\"password\":\"%s\"}}", cred.getUsername(),
 				cred.getPassword());
 
-		httpClient.fireAndForgotPost(url, json);
+		httpClient.postContent(url, json);
 	}
 
 }

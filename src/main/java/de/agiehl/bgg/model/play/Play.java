@@ -1,23 +1,23 @@
 package de.agiehl.bgg.model.play;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class Play {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Long id;
+    @JacksonXmlProperty(isAttribute = true)
+    private Long id;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private LocalDate date;
+    @JacksonXmlProperty(isAttribute = true)
+    private LocalDate date;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private Integer quantity;
@@ -34,13 +34,16 @@ public class Play {
 	@JacksonXmlProperty(isAttribute = true)
 	private String location;
 
-	@JacksonXmlProperty(isAttribute = false)
-	private Item item;
+    @JacksonXmlProperty(isAttribute = false)
+    private Item item;
 
-	@JacksonXmlProperty(isAttribute = false)
-	private String comments;
+    @JacksonXmlProperty(isAttribute = false)
+    private String comments;
 
-	@JacksonXmlElementWrapper(localName = "players", useWrapping = true)
-	private List<Players> players;
+    @JacksonXmlElementWrapper(localName = "players", useWrapping = true)
+    private List<Players> players = new ArrayList<>();
 
+    public void setPlayers(List<Players> players) {
+        this.players.addAll(players);
+    }
 }
