@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 @AllArgsConstructor
 public class ThingService {
 
-    private final HttpFetch httpFetch;
+    private final BggHttpClient httpFetch;
 
     public List<Item> loadThings(Long... ids) {
         return chunkedList(Arrays.asList(ids), 100)

@@ -13,11 +13,11 @@ import java.util.List;
 
 @Log
 @AllArgsConstructor
-public class LoadPlay {
+public class PlayService {
 
 	private static final int PLAYS_PER_PAGE = 100;
 
-	private final HttpFetch httpFetch;
+	private final BggHttpClient httpFetch;
 
 	public List<Plays> loadPlaysForBggUser(String username) throws Exception {
 		String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8.toString());

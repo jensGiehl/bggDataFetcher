@@ -9,8 +9,6 @@ import de.agiehl.bgg.model.thing.Item;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @Getter
@@ -19,21 +17,21 @@ public class BggDataFetcher {
 
     private final HttpConfig httpConfig;
 
-    private final HttpFetch httpFetch;
+    private final BggHttpClient httpFetch;
 
-    private final Login loginService;
+    private final LoginService loginService;
 
-    private final LoadCollection loadCollectionService;
+    private final CollectionService loadCollectionService;
 
     private final ThingService thingService;
 
     public BggDataFetcher(HttpConfig httpConfig) {
         this.httpConfig = httpConfig;
 
-        httpFetch = new HttpFetch(httpConfig.getHttpTimeout(), httpConfig.getMaxRetries());
+        httpFetch = new BggHttpClient(httpConfig.getHttpTimeout(), httpConfig.getMaxRetries());
 
-        loginService = new Login(httpFetch);
-        loadCollectionService = new LoadCollection(httpFetch);
+        loginService = new LoginService(httpFetch);
+        loadCollectionService = new CollectionService(httpFetch);
         thingService = new ThingService(httpFetch);
     }
 
@@ -45,17 +43,17 @@ public class BggDataFetcher {
     public BggDataFetcher login(Credentials credentials) {
         try {
             loginService.login(credentials);
-        } catch (URISyntaxException | IOException | InterruptedException e) {
-            e.printStackTrace();
+            return this;
+        } catch (BggHttpClientException e) {
+            throw new BggHttpClientException("Login for '" + credentials.getUsername() + "' failed!", e);
         }
-        return this;
     }
 
     public Items loadCollectionFromUser(String bggUsername, Subtypes type) {
         try {
             return loadCollectionService.loadCollectionOfBggUser(bggUsername, type);
         } catch (Exception e) {
-            throw new BggFetchException(String.format("Couldn't load collection for user '%s'!", bggUsername), e);
+            throw new BggHttpClientException(String.format("Couldn't load collection for user '%s'!", bggUsername), e);
         }
     }
 
@@ -63,7 +61,7 @@ public class BggDataFetcher {
         try {
             return loadCollectionService.loadCollectionOfBggUser(bggUsername, Subtypes.BOARDGAME);
         } catch (Exception e) {
-            throw new BggFetchException(String.format("Couldn't load boardgame collection for user '%s'!", bggUsername), e);
+            throw new BggHttpClientException(String.format("Couldn't load boardgame collection for user '%s'!", bggUsername), e);
         }
     }
 

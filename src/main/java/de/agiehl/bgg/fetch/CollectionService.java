@@ -12,9 +12,9 @@ import java.util.Map;
 
 @Log
 @AllArgsConstructor
-public class LoadCollection {
+public class CollectionService {
 
-	private final HttpFetch httpFetch;
+	private final BggHttpClient httpFetch;
 
 	public Items loadCollectionOfBggUser(String username, Subtypes type) throws Exception {
 		String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8.toString());

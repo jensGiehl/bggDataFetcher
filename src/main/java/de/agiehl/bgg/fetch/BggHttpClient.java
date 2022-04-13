@@ -18,7 +18,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 
 @Log
-public class HttpFetch {
+public class BggHttpClient {
 
 	private final Duration timeout;
 
@@ -28,7 +28,7 @@ public class HttpFetch {
 
 	private final XmlMapper xmlMapper;
 
-	public HttpFetch(Duration timeout, int maxRetries) {
+	public BggHttpClient(Duration timeout, int maxRetries) {
 		this.timeout = timeout;
 		this.maxRetries = maxRetries;
 		this.httpClient = HttpClient.newBuilder()
@@ -61,7 +61,7 @@ public class HttpFetch {
 		try {
 			return xmlMapper.readValue(responseBody, resultType);
 		} catch (JsonProcessingException e) {
-			throw new BggFetchException("Error while converting result into " + resultType.getName() + ". Response Body: " + responseBody, e);
+			throw new BggHttpClientException("Error while converting result into " + resultType.getName() + ". Response Body: " + responseBody, e);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class HttpFetch {
 		try {
 			Thread.sleep(Duration.ofSeconds(20).toMillis());
 		} catch (InterruptedException e) {
-			throw new BggFetchException("Error while waiting for next retry", e);
+			throw new BggHttpClientException("Error while waiting for next retry", e);
 		}
 	}
 
@@ -96,7 +96,7 @@ public class HttpFetch {
 		try {
 			return httpClient.send(request, BodyHandlers.ofString());
 		} catch (IOException | InterruptedException e) {
-			throw new BggFetchException("Error while loading URI: " + request.uri().toASCIIString(), e);
+			throw new BggHttpClientException("Error while loading URI: " + request.uri().toASCIIString(), e);
 		}
 	}
 
@@ -108,8 +108,11 @@ public class HttpFetch {
 				.build();
 
 		HttpResponse<String> response = getHttpResponse(request);
-		if (response.statusCode() != HttpStatuscode.OK.code && response.statusCode() != HttpStatuscode.NO_CONTENT.code) {
-			throw new PostException(response.statusCode(), response.body());
+		int statusCode = response.statusCode();
+		if (statusCode != HttpStatuscode.OK.code && statusCode != HttpStatuscode.NO_CONTENT.code) {
+			throw new BggHttpClientException(
+					String.format("Error while POST content to %s. Statuscode: %d  Body: %s", url, statusCode, response.body())
+			);
 		}
 	}
 
@@ -117,7 +120,7 @@ public class HttpFetch {
 		try {
 			return new URI(url);
 		} catch (URISyntaxException e) {
-			throw new BggFetchException("Error to create URI from " + url, e);
+			throw new BggHttpClientException("Error to create URI from " + url, e);
 		}
 	}
 
