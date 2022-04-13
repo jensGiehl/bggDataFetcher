@@ -1,4 +1,4 @@
 # Boardgamegeek.com Data fetcher
-A pure Java boardgamegeek.com data fetcher.
+A Boardgamegeek.com API written in Java with a minimum of dependencies.
 
-Use [LoadCollection](/src/main/java/de/agiehl/bgg/fetch/LoadCollection.java) to fetch the collection of a user and use [LoadPlay](/src/main/java/de/agiehl/bgg/fetch/LoadPlay.java) to fetchs plays of a user.
+As entrypoint use the [BggDataFetcher](/src/main/java/de/agiehl/bgg/BggDataFetcher.java) class.
