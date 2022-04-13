@@ -26,8 +26,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
+			<id>ossrh</id>
+			<name>Central Repository OSSRH</name>
+			<url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
 		</repository>
 	</distributionManagement>
 
