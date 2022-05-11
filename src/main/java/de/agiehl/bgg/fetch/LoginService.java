@@ -1,5 +1,6 @@
 package de.agiehl.bgg.fetch;
 
+import de.agiehl.bgg.config.LoginConfig;
 import de.agiehl.bgg.model.Credentials;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -8,14 +9,16 @@ import lombok.extern.java.Log;
 @AllArgsConstructor
 public class LoginService {
 
-	private final BggHttpClient httpClient;
+    private final BggHttpClient httpClient;
 
-	public void login(Credentials cred) {
-		String url = "https://boardgamegeek.com/login/api/v1";
-		String json = String.format("{\"credentials\":{\"username\":\"%s\",\"password\":\"%s\"}}", cred.getUsername(),
-				cred.getPassword());
+    private final LoginConfig config;
 
-		httpClient.postContent(url, json);
-	}
+    public void login(Credentials cred) {
+        String url = "https://boardgamegeek.com/login/api/v1";
+        String json = String.format("{\"credentials\":{\"username\":\"%s\",\"password\":\"%s\"}}", cred.getUsername(),
+                cred.getPassword());
+
+        httpClient.postContent(url, json);
+    }
 
 }

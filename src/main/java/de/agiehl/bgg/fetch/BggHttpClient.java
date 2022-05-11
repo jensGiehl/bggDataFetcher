@@ -3,6 +3,7 @@ package de.agiehl.bgg.fetch;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import de.agiehl.bgg.config.HttpConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.java.Log;
@@ -20,19 +21,17 @@ import java.time.Duration;
 @Log
 public class BggHttpClient {
 
-	private final Duration timeout;
-
-	private final int maxRetries;
+	private final HttpConfig config;
 
 	private final HttpClient httpClient;
 
 	private final XmlMapper xmlMapper;
 
-	public BggHttpClient(Duration timeout, int maxRetries) {
-		this.timeout = timeout;
-		this.maxRetries = maxRetries;
+	public BggHttpClient(HttpConfig config) {
+		this.config = config;
+
 		this.httpClient = HttpClient.newBuilder()
-				.connectTimeout(timeout)
+				.connectTimeout(config.getConnectionTimeout())
 				.cookieHandler(new CookieManager())
 				.build();
 
@@ -46,7 +45,7 @@ public class BggHttpClient {
 		HttpRequest request = HttpRequest.newBuilder() //
 				.uri(getUri(url)) //
 				.GET() //
-				.timeout(timeout)//
+				.timeout(config.getRequestTimeout())//
 				.build();
 
 		HttpResponse<String> response = retryRequest(request);
@@ -74,7 +73,7 @@ public class BggHttpClient {
 			response = getHttpResponse(request);
 			log.fine("HTTP Statuscode is: " + response.statusCode());
 
-			if (retryBasedOnStatuscode(response) && retryCounter < maxRetries) {
+			if (retryBasedOnStatuscode(response) && retryCounter < config.getMaxRetries()) {
 				retry = true;
 				retryCounter++;
 				log.info("Waiting for Retry #" + retryCounter);

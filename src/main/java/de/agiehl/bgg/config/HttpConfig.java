@@ -1,25 +1,26 @@
 package de.agiehl.bgg.config;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.time.Duration;
 
-@ToString
-@Getter
+@Data
 @Builder
-@AllArgsConstructor
 public class HttpConfig {
 
-    private final Duration httpTimeout;
+    private final Duration connectionTimeout;
+
+    private final Duration requestTimeout;
 
     private final int maxRetries;
 
-
-    public static HttpConfig defaultConfig() {
-        return HttpConfig.builder().httpTimeout(Duration.ofSeconds(10)).maxRetries(10).build();
+    public static HttpConfig getDefault() {
+        return HttpConfig.builder()
+                .connectionTimeout(Duration.ofSeconds(5))
+                .requestTimeout(Duration.ofSeconds(10))
+                .maxRetries(10)
+                .build();
     }
 
 }

@@ -1,5 +1,6 @@
 package de.agiehl.bgg.fetch;
 
+import de.agiehl.bgg.config.CollectionConfig;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,8 @@ import java.util.Map;
 public class CollectionService {
 
 	private final BggHttpClient httpFetch;
+
+	private final CollectionConfig config;
 
 	public Items loadCollectionOfBggUser(String username, Subtypes type) throws Exception {
 		String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8.toString());

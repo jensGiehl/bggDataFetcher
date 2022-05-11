@@ -1,5 +1,6 @@
 package de.agiehl.bgg.fetch;
 
+import de.agiehl.bgg.config.ThingConfig;
 import de.agiehl.bgg.model.thing.Item;
 import de.agiehl.bgg.model.thing.Items;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,8 @@ public class ThingService {
 
     private final BggHttpClient httpFetch;
 
+    private final ThingConfig config;
+
     public List<Item> loadThings(Long... ids) {
         return chunkedList(Arrays.asList(ids), 100)
                 .map(listOfIds -> listOfIds.stream().map(String::valueOf).collect(joining(",")))
@@ -28,7 +31,7 @@ public class ThingService {
     }
 
     private Items loadThingsForIds(String idsAsString) {
-        String url = "https://api.geekdo.com/xmlapi2/thing?marketplace=1&versions=1&videos=0&stats=1&comments=0&ratingcomments=0&id=" + idsAsString;
+        String url = config.getUrl(idsAsString);
 
         return httpFetch.loadFromUrl(url, Items.class);
     }

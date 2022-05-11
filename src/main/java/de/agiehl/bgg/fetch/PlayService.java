@@ -1,5 +1,6 @@
 package de.agiehl.bgg.fetch;
 
+import de.agiehl.bgg.config.PlayConfig;
 import de.agiehl.bgg.model.play.Plays;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -15,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class PlayService {
 
-	private static final int PLAYS_PER_PAGE = 100;
-
 	private final BggHttpClient httpFetch;
+
+	private final PlayConfig config;
 
 	public List<Plays> loadPlaysForBggUser(String username) throws Exception {
 		String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8.toString());
@@ -40,7 +41,9 @@ public class PlayService {
 	}
 
 	private int getTotalPages(Plays plays) {
-		return new BigDecimal(plays.getTotal()).divide(BigDecimal.valueOf(PLAYS_PER_PAGE), RoundingMode.UP).intValue();
+		return new BigDecimal(plays.getTotal())
+				.divide(BigDecimal.valueOf(config.getPlaysPerPage()), RoundingMode.UP)
+				.intValue();
 	}
 
 }

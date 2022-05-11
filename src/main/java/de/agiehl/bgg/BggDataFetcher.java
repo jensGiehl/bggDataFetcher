@@ -1,10 +1,11 @@
 package de.agiehl.bgg;
 
-import de.agiehl.bgg.config.HttpConfig;
+import de.agiehl.bgg.config.BggConfig;
 import de.agiehl.bgg.fetch.*;
 import de.agiehl.bgg.model.Credentials;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
+import de.agiehl.bgg.model.play.Plays;
 import de.agiehl.bgg.model.thing.Item;
 import lombok.Getter;
 import lombok.extern.java.Log;
@@ -15,9 +16,7 @@ import java.util.List;
 @Log
 public class BggDataFetcher {
 
-    private final HttpConfig httpConfig;
-
-    private final BggHttpClient httpFetch;
+    private final BggHttpClient httpClient;
 
     private final LoginService loginService;
 
@@ -25,16 +24,28 @@ public class BggDataFetcher {
 
     private final ThingService thingService;
 
-    public BggDataFetcher(HttpConfig httpConfig) {
-        this.httpConfig = httpConfig;
+    private final PlayService playService;
 
-        httpFetch = new BggHttpClient(httpConfig.getHttpTimeout(), httpConfig.getMaxRetries());
-
-        loginService = new LoginService(httpFetch);
-        loadCollectionService = new CollectionService(httpFetch);
-        thingService = new ThingService(httpFetch);
+    public BggDataFetcher() {
+        this(BggConfig.getDefault());
     }
 
+    public BggDataFetcher(BggConfig bggConfig) {
+        httpClient = new BggHttpClient(bggConfig.getHttpConfig());
+
+        loginService = new LoginService(httpClient, bggConfig.getLoginConfig());
+        loadCollectionService = new CollectionService(httpClient, bggConfig.getCollectionConfig());
+        thingService = new ThingService(httpClient, bggConfig.getThingConfig());
+        playService = new PlayService(httpClient, bggConfig.getPlayConfig());
+    }
+
+    public List<Plays> loadPlayForUser(String bggUsername) {
+        try {
+            return playService.loadPlaysForBggUser(bggUsername);
+        } catch (Exception e) {
+            throw new BggHttpClientException(String.format("Couldn't load plays for user '%s'", bggUsername), e);
+        }
+    }
 
     public List<Item> loadThings(Long... ids) {
         return thingService.loadThings(ids);
