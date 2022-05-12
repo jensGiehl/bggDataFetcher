@@ -1,13 +1,15 @@
 package de.agiehl.bgg;
 
 import de.agiehl.bgg.config.BggConfig;
-import de.agiehl.bgg.fetch.*;
+import de.agiehl.bgg.fetch.BggHttpClient;
+import de.agiehl.bgg.fetch.BggHttpClientException;
 import de.agiehl.bgg.model.Credentials;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
 import de.agiehl.bgg.model.play.Plays;
 import de.agiehl.bgg.model.search.SearchItems;
 import de.agiehl.bgg.model.thing.Item;
+import de.agiehl.bgg.service.*;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
