@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @JacksonXmlRootElement(localName = "items")
-public class Items {
+public class SearchItems {
 
     @JacksonXmlProperty(isAttribute = true)
     private Long total;
@@ -20,5 +20,5 @@ public class Items {
     private String termsofuse;
 
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<Item> item;
+    private List<SearchItem> item;
 }

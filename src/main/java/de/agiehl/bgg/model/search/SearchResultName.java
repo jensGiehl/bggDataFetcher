@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Name {
+public class SearchResultName {
 
     @JacksonXmlProperty(isAttribute = true)
     private String type;

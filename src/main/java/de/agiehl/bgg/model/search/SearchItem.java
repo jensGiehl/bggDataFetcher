@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Item {
+public class SearchItem {
 
     @JacksonXmlProperty(isAttribute = true)
     private String type;
@@ -17,7 +17,7 @@ public class Item {
     private Long id;
 
     @JacksonXmlElementWrapper(useWrapping = false)
-    private Name name;
+    private SearchResultName name;
 
     @JacksonXmlElementWrapper(useWrapping = true)
     private IntValueObject yearpublished;

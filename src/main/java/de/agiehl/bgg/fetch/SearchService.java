@@ -1,7 +1,7 @@
 package de.agiehl.bgg.fetch;
 
 import de.agiehl.bgg.config.SearchConfig;
-import de.agiehl.bgg.model.search.Items;
+import de.agiehl.bgg.model.search.SearchItems;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -16,11 +16,11 @@ public class SearchService {
 
     private final SearchConfig config;
 
-    public Items search(String searchQuery) {
+    public SearchItems search(String searchQuery) {
         String encodedSearchQuery = URLEncoder.encode(searchQuery, StandardCharsets.UTF_8);
         String url = config.getUrl() + "?query=" + searchQuery;
 
-        return httpFetch.loadFromUrl(url, Items.class);
+        return httpFetch.loadFromUrl(url, SearchItems.class);
     }
 
 }

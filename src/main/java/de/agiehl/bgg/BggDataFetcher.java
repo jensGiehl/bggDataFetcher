@@ -6,6 +6,7 @@ import de.agiehl.bgg.model.Credentials;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
 import de.agiehl.bgg.model.play.Plays;
+import de.agiehl.bgg.model.search.SearchItems;
 import de.agiehl.bgg.model.thing.Item;
 import lombok.Getter;
 import lombok.extern.java.Log;
@@ -42,7 +43,7 @@ public class BggDataFetcher {
         searchService = new SearchService(httpClient, bggConfig.getSearchConfig());
     }
 
-    public de.agiehl.bgg.model.search.Items search(String searchQuery) {
+    public SearchItems search(String searchQuery) {
         return searchService.search(searchQuery);
     }
 
