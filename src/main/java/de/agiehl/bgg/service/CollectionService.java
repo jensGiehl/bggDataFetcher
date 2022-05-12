@@ -1,7 +1,7 @@
 package de.agiehl.bgg.service;
 
 import de.agiehl.bgg.config.CollectionConfig;
-import de.agiehl.bgg.fetch.BggHttpClient;
+import de.agiehl.bgg.httpclient.BggHttpClient;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package de.agiehl.bgg.service;
 
 import de.agiehl.bgg.config.LoginConfig;
-import de.agiehl.bgg.fetch.BggHttpClient;
+import de.agiehl.bgg.httpclient.BggHttpClient;
 import de.agiehl.bgg.model.Credentials;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;

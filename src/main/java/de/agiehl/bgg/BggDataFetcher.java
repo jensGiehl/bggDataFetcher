@@ -1,8 +1,8 @@
 package de.agiehl.bgg;
 
 import de.agiehl.bgg.config.BggConfig;
-import de.agiehl.bgg.fetch.BggHttpClient;
-import de.agiehl.bgg.fetch.BggHttpClientException;
+import de.agiehl.bgg.httpclient.BggHttpClient;
+import de.agiehl.bgg.httpclient.BggHttpClientException;
 import de.agiehl.bgg.model.Credentials;
 import de.agiehl.bgg.model.collection.Items;
 import de.agiehl.bgg.model.collection.Subtypes;

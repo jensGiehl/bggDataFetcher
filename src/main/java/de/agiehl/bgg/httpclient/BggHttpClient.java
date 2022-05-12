@@ -1,4 +1,4 @@
-package de.agiehl.bgg.fetch;
+package de.agiehl.bgg.httpclient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

@@ -1,7 +1,7 @@
 package de.agiehl.bgg.service;
 
 import de.agiehl.bgg.config.SearchConfig;
-import de.agiehl.bgg.fetch.BggHttpClient;
+import de.agiehl.bgg.httpclient.BggHttpClient;
 import de.agiehl.bgg.model.search.SearchItems;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;

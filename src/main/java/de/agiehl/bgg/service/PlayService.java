@@ -1,7 +1,7 @@
 package de.agiehl.bgg.service;
 
 import de.agiehl.bgg.config.PlayConfig;
-import de.agiehl.bgg.fetch.BggHttpClient;
+import de.agiehl.bgg.httpclient.BggHttpClient;
 import de.agiehl.bgg.model.play.Plays;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;

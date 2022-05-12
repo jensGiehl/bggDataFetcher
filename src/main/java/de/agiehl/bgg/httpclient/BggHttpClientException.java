@@ -1,4 +1,4 @@
-package de.agiehl.bgg.fetch;
+package de.agiehl.bgg.httpclient;
 
 public class BggHttpClientException extends RuntimeException {
     public BggHttpClientException(String msg, Exception e) {
