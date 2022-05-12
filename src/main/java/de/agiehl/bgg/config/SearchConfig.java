@@ -11,7 +11,6 @@ public class SearchConfig {
 
     private final String url;
 
-
     public static SearchConfig getDefault() {
         return SearchConfig.builder()
                 .url(ROOT_API_URL + "/search")

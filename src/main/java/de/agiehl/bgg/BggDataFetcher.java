@@ -9,7 +9,11 @@ import de.agiehl.bgg.model.collection.Subtypes;
 import de.agiehl.bgg.model.play.Plays;
 import de.agiehl.bgg.model.search.SearchItems;
 import de.agiehl.bgg.model.thing.Item;
-import de.agiehl.bgg.service.*;
+import de.agiehl.bgg.service.CollectionService;
+import de.agiehl.bgg.service.LoginService;
+import de.agiehl.bgg.service.PlayService;
+import de.agiehl.bgg.service.ThingService;
+import de.agiehl.bgg.service.search.SearchService;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
