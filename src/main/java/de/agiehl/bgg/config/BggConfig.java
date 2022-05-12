@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class BggConfig {
 
+    public static final String ROOT_API_URL = "https://boardgamegeek.com/xmlapi2";
+
     @Builder.Default
     private CollectionConfig collectionConfig = CollectionConfig.getDefault();
 
@@ -21,6 +23,9 @@ public class BggConfig {
 
     @Builder.Default
     private ThingConfig thingConfig = ThingConfig.getDefault();
+
+    @Builder.Default
+    private SearchConfig searchConfig = SearchConfig.getDefault();
 
     public static BggConfig getDefault() {
         return BggConfig.builder().build();

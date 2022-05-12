@@ -16,7 +16,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.time.Duration;
+import java.util.logging.Level;
 
 @Log
 public class BggHttpClient {
@@ -76,16 +76,21 @@ public class BggHttpClient {
 			if (retryBasedOnStatuscode(response) && retryCounter < config.getMaxRetries()) {
 				retry = true;
 				retryCounter++;
-				log.info("Waiting for Retry #" + retryCounter);
+				log.log(Level.INFO, "Waiting for Retry #{0} for URL {1}", new Object[]{retryCounter, request.uri().toASCIIString()});
 				waitForNextRetry();
 			}
 		} while (retry);
+
+		if (retryBasedOnStatuscode(response)) {
+			throw new BggHttpClientException(String.format("Couldn't load URL %s (tried it %d times)", request.uri().toASCIIString(), retryCounter));
+		}
+
 		return response;
 	}
 
 	private void waitForNextRetry() {
 		try {
-			Thread.sleep(Duration.ofSeconds(20).toMillis());
+			Thread.sleep(config.getWaitBetweenRetires().toMillis());
 		} catch (InterruptedException e) {
 			throw new BggHttpClientException("Error while waiting for next retry", e);
 		}

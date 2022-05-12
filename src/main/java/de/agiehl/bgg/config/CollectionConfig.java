@@ -3,6 +3,8 @@ package de.agiehl.bgg.config;
 import lombok.Builder;
 import lombok.Data;
 
+import static de.agiehl.bgg.config.BggConfig.ROOT_API_URL;
+
 @Builder
 @Data
 public class CollectionConfig {
@@ -28,7 +30,7 @@ public class CollectionConfig {
 
     public static CollectionConfig getDefault() {
         return CollectionConfig.builder()
-                .url("https://boardgamegeek.com/xmlapi2/collection")
+                .url(ROOT_API_URL + "/collection")
                 .versions(Boolean.TRUE)
                 .stats(Boolean.TRUE)
                 .showPrivate(Boolean.TRUE)

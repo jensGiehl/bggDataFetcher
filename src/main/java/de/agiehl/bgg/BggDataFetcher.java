@@ -26,6 +26,8 @@ public class BggDataFetcher {
 
     private final PlayService playService;
 
+    private final SearchService searchService;
+
     public BggDataFetcher() {
         this(BggConfig.getDefault());
     }
@@ -37,6 +39,11 @@ public class BggDataFetcher {
         loadCollectionService = new CollectionService(httpClient, bggConfig.getCollectionConfig());
         thingService = new ThingService(httpClient, bggConfig.getThingConfig());
         playService = new PlayService(httpClient, bggConfig.getPlayConfig());
+        searchService = new SearchService(httpClient, bggConfig.getSearchConfig());
+    }
+
+    public de.agiehl.bgg.model.search.Items search(String searchQuery) {
+        return searchService.search(searchQuery);
     }
 
     public List<Plays> loadPlayForUser(String bggUsername) {
@@ -49,6 +56,19 @@ public class BggDataFetcher {
 
     public List<Item> loadThings(Long... ids) {
         return thingService.loadThings(ids);
+    }
+
+    public List<Item> loadThingsWhichUserWantToHave(String bggUsername) {
+        List<Long> boardgameIdsWhichUserWants = loadBoardgameCollectionForUser(bggUsername)
+                .getItem()
+                .stream()
+                .filter(item -> item.getStatus().isWantedOrWished())
+                .map(de.agiehl.bgg.model.collection.Item::getObjectid)
+                .toList();
+
+        log.info(String.format("Found %d Things that user %s wants", boardgameIdsWhichUserWants.size(), bggUsername));
+
+        return loadThings(boardgameIdsWhichUserWants.toArray(new Long[]{}));
     }
 
     public BggDataFetcher login(Credentials credentials) {

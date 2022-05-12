@@ -14,7 +14,7 @@ public class Item {
 	private String objecttype;
 
 	@JacksonXmlProperty(isAttribute = true)
-	private long objectid;
+	private Long objectid;
 
 	@JacksonXmlProperty(isAttribute = true)
 	private String subtype;

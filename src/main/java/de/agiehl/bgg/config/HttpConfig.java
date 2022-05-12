@@ -13,13 +13,16 @@ public class HttpConfig {
 
     private final Duration requestTimeout;
 
+    private final Duration waitBetweenRetires;
+
     private final int maxRetries;
 
     public static HttpConfig getDefault() {
         return HttpConfig.builder()
-                .connectionTimeout(Duration.ofSeconds(5))
-                .requestTimeout(Duration.ofSeconds(10))
-                .maxRetries(10)
+                .connectionTimeout(Duration.ofSeconds(10))
+                .requestTimeout(Duration.ofSeconds(60))
+                .maxRetries(15)
+                .waitBetweenRetires(Duration.ofSeconds(20))
                 .build();
     }
 

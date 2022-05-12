@@ -3,9 +3,13 @@ package de.agiehl.bgg.config;
 import lombok.Builder;
 import lombok.Data;
 
+import static de.agiehl.bgg.config.BggConfig.ROOT_API_URL;
+
 @Builder
 @Data
 public class ThingConfig {
+
+    public static final String URL = ROOT_API_URL + "/thing";
 
     private final String url;
 
@@ -40,7 +44,33 @@ public class ThingConfig {
 
     public static ThingConfig getDefault() {
         return ThingConfig.builder()
-                .url("https://api.geekdo.com/xmlapi2/thing")
+                .url(URL)
+                .maxIdsPerRequest(100)
+                .marketplace(Boolean.TRUE)
+                .versions(Boolean.TRUE)
+                .videos(Boolean.FALSE)
+                .stats(Boolean.TRUE)
+                .comments(Boolean.FALSE)
+                .ratingComments(Boolean.FALSE)
+                .build();
+    }
+
+    public static ThingConfig getMinimalDefaultConfig() {
+        return ThingConfig.builder()
+                .url(URL)
+                .maxIdsPerRequest(100)
+                .marketplace(Boolean.FALSE)
+                .versions(Boolean.FALSE)
+                .videos(Boolean.FALSE)
+                .stats(Boolean.FALSE)
+                .comments(Boolean.FALSE)
+                .ratingComments(Boolean.FALSE)
+                .build();
+    }
+
+    public static ThingConfig getFullDefaultConfig() {
+        return ThingConfig.builder()
+                .url(URL)
                 .maxIdsPerRequest(100)
                 .marketplace(Boolean.TRUE)
                 .versions(Boolean.TRUE)

@@ -8,6 +8,7 @@ import lombok.extern.java.Log;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -23,6 +24,8 @@ public class ThingService {
     private final ThingConfig config;
 
     public List<Item> loadThings(Long... ids) {
+        log.log(Level.FINE, "Loading {0} things", ids.length);
+
         return chunkedList(Arrays.asList(ids), 100)
                 .map(listOfIds -> listOfIds.stream().map(String::valueOf).collect(joining(",")))
                 .map(this::loadThingsForIds)
@@ -31,6 +34,7 @@ public class ThingService {
     }
 
     private Items loadThingsForIds(String idsAsString) {
+        log.log(Level.INFO, "Loading following things: {0}", idsAsString);
         String url = config.getUrl(idsAsString);
 
         return httpFetch.loadFromUrl(url, Items.class);
