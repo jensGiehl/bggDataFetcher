@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Item {
+public class CollectionItem {
 
 	@JacksonXmlProperty(isAttribute = true)
 	private String objecttype;

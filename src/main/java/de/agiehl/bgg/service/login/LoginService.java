@@ -1,4 +1,4 @@
-package de.agiehl.bgg.service;
+package de.agiehl.bgg.service.login;
 
 import de.agiehl.bgg.config.LoginConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;

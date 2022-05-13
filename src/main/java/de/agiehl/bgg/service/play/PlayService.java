@@ -1,4 +1,4 @@
-package de.agiehl.bgg.service;
+package de.agiehl.bgg.service.play;
 
 import de.agiehl.bgg.config.PlayConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;

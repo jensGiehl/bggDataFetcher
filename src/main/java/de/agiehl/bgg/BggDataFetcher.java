@@ -4,16 +4,17 @@ import de.agiehl.bgg.config.BggConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;
 import de.agiehl.bgg.httpclient.BggHttpClientException;
 import de.agiehl.bgg.model.Credentials;
-import de.agiehl.bgg.model.collection.Items;
+import de.agiehl.bgg.model.collection.CollectionItem;
+import de.agiehl.bgg.model.collection.CollectionsItems;
 import de.agiehl.bgg.model.collection.Subtypes;
 import de.agiehl.bgg.model.play.Plays;
 import de.agiehl.bgg.model.search.SearchItems;
 import de.agiehl.bgg.model.thing.Item;
-import de.agiehl.bgg.service.CollectionService;
-import de.agiehl.bgg.service.LoginService;
-import de.agiehl.bgg.service.PlayService;
-import de.agiehl.bgg.service.ThingService;
+import de.agiehl.bgg.service.collection.CollectionService;
+import de.agiehl.bgg.service.login.LoginService;
+import de.agiehl.bgg.service.play.PlayService;
 import de.agiehl.bgg.service.search.SearchService;
+import de.agiehl.bgg.service.thing.ThingService;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
@@ -70,7 +71,7 @@ public class BggDataFetcher {
                 .getItem()
                 .stream()
                 .filter(item -> item.getStatus().isWantedOrWished())
-                .map(de.agiehl.bgg.model.collection.Item::getObjectid)
+                .map(CollectionItem::getObjectid)
                 .toList();
 
         log.info(String.format("Found %d Things that user %s wants", boardgameIdsWhichUserWants.size(), bggUsername));
@@ -87,7 +88,7 @@ public class BggDataFetcher {
         }
     }
 
-    public Items loadCollectionFromUser(String bggUsername, Subtypes type) {
+    public CollectionsItems loadCollectionFromUser(String bggUsername, Subtypes type) {
         try {
             return loadCollectionService.loadCollectionOfBggUser(bggUsername, type);
         } catch (Exception e) {
@@ -95,7 +96,7 @@ public class BggDataFetcher {
         }
     }
 
-    public Items loadBoardgameCollectionForUser(String bggUsername) {
+    public CollectionsItems loadBoardgameCollectionForUser(String bggUsername) {
         try {
             return loadCollectionService.loadCollectionOfBggUser(bggUsername, Subtypes.BOARDGAME);
         } catch (Exception e) {

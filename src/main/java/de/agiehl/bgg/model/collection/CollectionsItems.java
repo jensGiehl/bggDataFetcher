@@ -11,18 +11,18 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @JacksonXmlRootElement(localName = "items")
-public class Items {
+public class CollectionsItems {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Long totalitems;
+    @JacksonXmlProperty(isAttribute = true)
+    private Long totalitems;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String termsofuse;
+    @JacksonXmlProperty(isAttribute = true)
+    private String termsofuse;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String pubdate;
+    @JacksonXmlProperty(isAttribute = true)
+    private String pubdate;
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private List<Item> item;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<CollectionItem> item;
 
 }

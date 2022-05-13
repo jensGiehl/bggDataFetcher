@@ -1,4 +1,4 @@
-package de.agiehl.bgg.service;
+package de.agiehl.bgg.service.thing;
 
 import de.agiehl.bgg.config.ThingConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;

@@ -12,11 +12,20 @@ import java.util.List;
 @Builder
 public class SearchQueryParameters {
 
+    /**
+     * Returns all types of Items that match
+     */
     @NonNull
     private String query;
 
+    /**
+     * Returns all items that match type
+     */
     @Singular
     private List<Type> types;
 
+    /**
+     * Limit results to items that match the {@link #query} exactly
+     */
     private boolean exact;
 }
