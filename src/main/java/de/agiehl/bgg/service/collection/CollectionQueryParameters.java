@@ -4,6 +4,7 @@ import de.agiehl.bgg.service.common.Type;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.Singular;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,7 +38,8 @@ public class CollectionQueryParameters {
     /**
      * Filter collection to specifically listed item(s).
      */
-    private List<Long> id;
+    @Singular
+    private List<Long> ids;
 
     /**
      * Returns more abbreviated results.

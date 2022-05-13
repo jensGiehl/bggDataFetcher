@@ -37,6 +37,15 @@ public class PlayQueryParameters {
      */
     private Type subType;
 
+    /**
+     * The page of information to request
+     */
+    @Builder.Default
+    private Integer page = 1;
+
+    public void nextPage() {
+        page++;
+    }
 
     public enum PlayType {
         THING, FAMILY

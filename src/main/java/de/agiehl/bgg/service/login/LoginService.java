@@ -2,7 +2,6 @@ package de.agiehl.bgg.service.login;
 
 import de.agiehl.bgg.config.LoginConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;
-import de.agiehl.bgg.model.Credentials;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
@@ -14,8 +13,8 @@ public class LoginService {
 
     private final LoginConfig config;
 
-    public void login(Credentials cred) {
-        String url = "https://boardgamegeek.com/login/api/v1";
+    public void login(LoginCredentials cred) {
+        String url = config.getUrl();
         String json = String.format("{\"credentials\":{\"username\":\"%s\",\"password\":\"%s\"}}", cred.getUsername(),
                 cred.getPassword());
 

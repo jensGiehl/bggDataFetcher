@@ -4,6 +4,7 @@ import de.agiehl.bgg.service.common.Type;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.Singular;
 
 import java.util.List;
 
@@ -15,12 +16,14 @@ public class ThingQueryParameters {
      * Specifies the id of the thing(s) to retrieve.
      */
     @NonNull
+    @Singular
     private List<Long> ids;
 
     /**
-     * Specifies that, regardless of the type of thing asked for by id, the results are filtered by the {@link #type} specified.
+     * Specifies that, regardless of the type of thing asked for by id, the results are filtered by the {@link #types} specified.
      */
-    private List<Type> type;
+    @Singular
+    private List<Type> types;
 
     /**
      * Returns version info for the item.
