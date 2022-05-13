@@ -2,7 +2,6 @@ package de.agiehl.bgg;
 
 import de.agiehl.bgg.config.BggConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;
-import de.agiehl.bgg.httpclient.BggHttpClientException;
 import de.agiehl.bgg.model.collection.CollectionItem;
 import de.agiehl.bgg.model.collection.CollectionsItems;
 import de.agiehl.bgg.model.play.Plays;
@@ -58,20 +57,28 @@ public class BggDataFetcher {
         return searchService.search(SearchQueryParameters.builder().query(searchQuery).build());
     }
 
-    public List<Plays> loadPlayForUser(String bggUsername) {
-        try {
-            return playService.loadPlaysForBggUser(PlayQueryParameters.builder().usernameOrId(bggUsername).build());
-        } catch (Exception e) {
-            throw new BggHttpClientException(String.format("Couldn't load plays for user '%s'", bggUsername), e);
-        }
+    public SearchItems search(SearchQueryParameters parameters) {
+        return searchService.search(parameters);
+    }
+
+    public List<Plays> loadPlaysForUser(String bggUsername) {
+        return playService.loadPlays(PlayQueryParameters.builder().usernameOrId(bggUsername).build());
+    }
+
+    public List<Plays> loadPlays(PlayQueryParameters parameters) {
+        return playService.loadPlays(parameters);
     }
 
     public List<Item> loadThings(Long... ids) {
         return thingService.loadThings(ThingQueryParameters.builder().ids(Arrays.asList(ids)).build());
     }
 
+    public List<Item> loadThings(ThingQueryParameters parameters) {
+        return thingService.loadThings(parameters);
+    }
+
     public List<Item> loadThingsWhichUserWantToHave(String bggUsername) {
-        List<Long> boardgameIdsWhichUserWants = loadBoardgameCollectionForUser(bggUsername)
+        List<Long> boardgameIdsWhichUserWants = loadCollectionForUser(bggUsername)
                 .getItem()
                 .stream()
                 .filter(item -> item.getStatus().isWantedOrWished())
@@ -84,20 +91,16 @@ public class BggDataFetcher {
     }
 
     public BggDataFetcher login(LoginCredentials credentials) {
-        try {
-            loginService.login(credentials);
-            return this;
-        } catch (BggHttpClientException e) {
-            throw new BggHttpClientException("Login for '" + credentials.getUsername() + "' failed!", e);
-        }
+        loginService.login(credentials);
+        return this;
     }
 
-    public CollectionsItems loadBoardgameCollectionForUser(String bggUsername) {
-        try {
-            return loadCollectionService.loadCollectionOfBggUser(CollectionQueryParameters.builder().username(bggUsername).build());
-        } catch (Exception e) {
-            throw new BggHttpClientException(String.format("Couldn't load boardgame collection for user '%s'!", bggUsername), e);
-        }
+    public CollectionsItems loadCollectionForUser(String bggUsername) {
+        return loadCollectionService.loadCollection(CollectionQueryParameters.builder().username(bggUsername).build());
+    }
+
+    public CollectionsItems loadCollection(CollectionQueryParameters parameters) {
+        return loadCollectionService.loadCollection(parameters);
     }
 
 }

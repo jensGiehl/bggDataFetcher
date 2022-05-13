@@ -20,7 +20,7 @@ public class PlayService {
 
 	private final PlayConfig config;
 
-	public List<Plays> loadPlaysForBggUser(PlayQueryParameters parameters) {
+	public List<Plays> loadPlays(PlayQueryParameters parameters) {
 		int totalPages;
 		List<Plays> result = new ArrayList<>();
 		do {

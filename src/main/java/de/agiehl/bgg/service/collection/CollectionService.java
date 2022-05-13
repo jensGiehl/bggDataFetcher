@@ -15,7 +15,7 @@ public class CollectionService {
 
 	private final CollectionConfig config;
 
-	public CollectionsItems loadCollectionOfBggUser(CollectionQueryParameters parameters) {
+	public CollectionsItems loadCollection(CollectionQueryParameters parameters) {
 		String url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
 
 		CollectionsItems items = httpFetch.loadFromUrl(url, CollectionsItems.class);
