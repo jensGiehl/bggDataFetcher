@@ -21,8 +21,8 @@ public class SearchQueryParameters {
     /**
      * Returns all items that match type
      */
-    @Singular
-    private List<Type> types;
+    @Singular("type")
+    private List<Type> type;
 
     /**
      * Limit results to items that match the {@link #query} exactly

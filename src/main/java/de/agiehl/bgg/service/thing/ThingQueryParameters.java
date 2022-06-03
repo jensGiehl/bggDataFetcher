@@ -16,14 +16,14 @@ public class ThingQueryParameters {
      * Specifies the id of the thing(s) to retrieve.
      */
     @NonNull
-    @Singular
-    private List<Long> ids;
+    @Singular("id")
+    private List<Long> id;
 
     /**
-     * Specifies that, regardless of the type of thing asked for by id, the results are filtered by the {@link #types} specified.
+     * Specifies that, regardless of the type of thing asked for by id, the results are filtered by the {@link #type} specified.
      */
-    @Singular
-    private List<Type> types;
+    @Singular("type")
+    private List<Type> type;
 
     /**
      * Returns version info for the item.

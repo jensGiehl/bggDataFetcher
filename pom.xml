@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.agiehl.bgg</groupId>
 	<artifactId>BggDataFetcher</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 
 	<name>BoardgameGeek.com Data Fetcher</name>
 	<description>A pure java lib to fetch data from boardgamegeek.com</description>

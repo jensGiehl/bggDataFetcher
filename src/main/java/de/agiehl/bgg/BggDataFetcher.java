@@ -70,7 +70,7 @@ public class BggDataFetcher {
     }
 
     public List<Item> loadThings(Long... ids) {
-        return thingService.loadThings(ThingQueryParameters.builder().ids(Arrays.asList(ids)).build());
+        return thingService.loadThings(ThingQueryParameters.builder().id(Arrays.asList(ids)).build());
     }
 
     public List<Item> loadThings(ThingQueryParameters parameters) {

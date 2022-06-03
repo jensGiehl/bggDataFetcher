@@ -38,8 +38,8 @@ public class CollectionQueryParameters {
     /**
      * Filter collection to specifically listed item(s).
      */
-    @Singular
-    private List<Long> ids;
+    @Singular("id")
+    private List<Long> id;
 
     /**
      * Returns more abbreviated results.

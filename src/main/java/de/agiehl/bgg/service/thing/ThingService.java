@@ -23,12 +23,12 @@ public class ThingService {
     private final ThingConfig config;
 
     public List<Item> loadThings(ThingQueryParameters queryParameters) {
-        List<List<Long>> chunkedIdLists = chunkedList(queryParameters.getIds(), config.getMaxIdsPerRequest());
-        log.log(Level.INFO, "Loadings {0} IDs in {1} chunks.", new Object[]{queryParameters.getIds().size(), chunkedIdLists.size()});
+        List<List<Long>> chunkedIdLists = chunkedList(queryParameters.getId(), config.getMaxIdsPerRequest());
+        log.log(Level.INFO, "Loadings {0} IDs in {1} chunks.", new Object[]{queryParameters.getId().size(), chunkedIdLists.size()});
 
         List<Item> resultItems = new ArrayList<>();
         for (List<Long> ids : chunkedIdLists) {
-            queryParameters.setIds(ids);
+            queryParameters.setId(ids);
             String url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), queryParameters);
 
             Items items = httpFetch.loadFromUrl(url, Items.class);
