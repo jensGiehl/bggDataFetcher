@@ -26,4 +26,25 @@ public class Rating {
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private Ranks ranks;
 
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject owned;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject trading;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject wanting;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject wishing;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject numcomments;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject numweights;
+
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private IntValueObject averageweight;
+
 }
