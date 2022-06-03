@@ -29,9 +29,7 @@ public class UrlBuilder {
                         field.setAccessible(true);
                         String key = field.getName().toLowerCase();
                         Object value = field.get(queryParameters);
-                        if (value != null && !value.toString().isBlank()) {
-                            queryParametersMap.put(key, value);
-                        }
+                        queryParametersMap.put(key, value);
                     } catch (IllegalAccessException e) {
                         String msg = String.format("Couldn't access value of field '%s' on class %s", field.getName(), queryParameters.getClass().getName());
                         log.log(Level.WARNING, msg, e);
@@ -75,6 +73,9 @@ public class UrlBuilder {
 
         if (value instanceof Collection<?>) {
             String collectionAsString = ((Collection<?>) value).stream().filter(Objects::nonNull).map(this::mapToString).collect(Collectors.joining(","));
+            if (collectionAsString.isEmpty()) {
+                return Optional.empty();
+            }
             return Optional.of(collectionAsString);
         }
 
@@ -92,7 +93,12 @@ public class UrlBuilder {
             return Optional.of(dateAsString);
         }
 
-        return Optional.of(value.toString());
+        String toString = value.toString();
+        if (toString.isBlank()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(toString);
     }
 
     private String mapToString(Object value) {
