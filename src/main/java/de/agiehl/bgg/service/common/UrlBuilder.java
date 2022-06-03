@@ -29,7 +29,9 @@ public class UrlBuilder {
                         field.setAccessible(true);
                         String key = field.getName().toLowerCase();
                         Object value = field.get(queryParameters);
-                        queryParametersMap.put(key, value);
+                        if (value != null && !value.toString().isBlank()) {
+                            queryParametersMap.put(key, value);
+                        }
                     } catch (IllegalAccessException e) {
                         String msg = String.format("Couldn't access value of field '%s' on class %s", field.getName(), queryParameters.getClass().getName());
                         log.log(Level.WARNING, msg, e);
