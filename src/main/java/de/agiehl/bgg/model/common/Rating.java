@@ -45,6 +45,6 @@ public class Rating {
 	private IntValueObject numweights;
 
 	@JacksonXmlElementWrapper(useWrapping = false)
-	private IntValueObject averageweight;
+	private ValueObject averageweight;
 
 }
