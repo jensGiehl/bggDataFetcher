@@ -69,6 +69,7 @@ public class BggHttpClient {
 		boolean retry;
 		int retryCounter = 0;
 		int statusCode = -1;
+		String url = request.uri().toASCIIString();
 		do {
 			retry = false;
 			response = getHttpResponse(request);
@@ -78,13 +79,16 @@ public class BggHttpClient {
 			if (retryBasedOnStatuscode(response) && retryCounter < config.getMaxRetries()) {
 				retry = true;
 				retryCounter++;
-				log.log(Level.INFO, "Waiting for Retry #{0} for URL {1}", new Object[]{retryCounter, request.uri().toASCIIString()});
+				log.log(Level.INFO, "Waiting for Retry #{0} for URL {1}", new Object[]{retryCounter, url});
 				waitForNextRetry();
 			}
 		} while (retry);
 
 		if (statusCode != HttpStatuscode.OK.getCode()) {
-			throw new BggHttpClientException(String.format("Couldn't load URL %s (tried it %d times). Statuscode is: %d", request.uri().toASCIIString(), retryCounter, statusCode));
+			throw new BggHttpClientException
+					(String.format("Couldn't load URL %s (tried it %d times). Statuscode is: %d", url, retryCounter, statusCode),
+							url,
+							statusCode);
 		}
 
 		return response;
@@ -117,7 +121,9 @@ public class BggHttpClient {
 		int statusCode = response.statusCode();
 		if (statusCode != HttpStatuscode.OK.code && statusCode != HttpStatuscode.NO_CONTENT.code) {
 			throw new BggHttpClientException(
-					String.format("Error while POST content to %s. Statuscode: %d  Body: %s", url, statusCode, response.body())
+					String.format("Error while POST content to %s. Statuscode: %d  Body: %s", url, statusCode, response.body()),
+					url,
+					statusCode
 			);
 		}
 	}
