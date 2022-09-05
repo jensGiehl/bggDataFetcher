@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.agiehl.bgg</groupId>
 	<artifactId>BggDataFetcher</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
 
 	<name>BoardgameGeek.com Data Fetcher</name>
 	<description>A pure java lib to fetch data from boardgamegeek.com</description>
@@ -38,7 +38,7 @@
 		<maven-source-plugin.version>3.2.0</maven-source-plugin.version>
 		<maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
 		<lombok.version>1.18.22</lombok.version>
-		<jackson.version>2.13.2</jackson.version>
+		<jackson.version>2.13.3</jackson.version>
 		<junit.version>5.8.2</junit.version>
 		<assertj.version>3.22.0</assertj.version>
 	</properties>
@@ -47,6 +47,11 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>

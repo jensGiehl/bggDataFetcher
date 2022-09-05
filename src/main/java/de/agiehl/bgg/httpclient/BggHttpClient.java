@@ -2,6 +2,7 @@ package de.agiehl.bgg.httpclient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import de.agiehl.bgg.config.HttpConfig;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,8 @@ public class BggHttpClient {
 
 	private final XmlMapper xmlMapper;
 
+	private final JsonMapper jsonMapper;
+
 	public BggHttpClient(HttpConfig config) {
 		this.config = config;
 
@@ -37,9 +40,17 @@ public class BggHttpClient {
 
 		this.xmlMapper = new XmlMapper();
 		xmlMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+		this.jsonMapper = new JsonMapper();
 	}
 
 	public <T> T loadFromUrl(String url, Class<T> resultType) {
+		String responseBody = loadStringFromUrl(url);
+
+		return mapXmlResult(resultType, responseBody);
+	}
+
+	public String loadStringFromUrl(String url) {
 		log.fine(() -> "Loading URL: " + url);
 
 		HttpRequest request = HttpRequest.newBuilder() //
@@ -53,7 +64,21 @@ public class BggHttpClient {
 		String responseBody = response.body();
 		log.finest(() -> String.format("RAW Response from %s: %s", url, responseBody));
 
-		return mapXmlResult(resultType, responseBody);
+		return responseBody;
+	}
+
+	public <T> T loadJsonFromUrl(String url, Class<T> resultType) {
+		String responseBody = loadStringFromUrl(url);
+
+		return mapJsonResult(resultType, responseBody);
+	}
+
+	private <T> T mapJsonResult(Class<T> resultType, String responseBody) {
+		try {
+			return jsonMapper.readValue(responseBody, resultType);
+		} catch (JsonProcessingException e) {
+			throw new BggHttpClientException("Error while converting result into " + resultType.getName() + ". Response Body: " + responseBody, e);
+		}
 	}
 
 	private <T> T mapXmlResult(Class<T> resultType, String responseBody) {
@@ -68,7 +93,7 @@ public class BggHttpClient {
 		HttpResponse<String> response;
 		boolean retry;
 		int retryCounter = 0;
-		int statusCode = -1;
+		int statusCode;
 		String url = request.uri().toASCIIString();
 		do {
 			retry = false;
