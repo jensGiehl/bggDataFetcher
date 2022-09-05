@@ -35,6 +35,9 @@ public class Status {
     @JacksonXmlProperty(isAttribute = true)
     private String lastmodified;
 
+    @JacksonXmlProperty(isAttribute = true)
+    private Short wishlistpriority;
+
     public boolean isOwn() {
         return own == 1;
     }
