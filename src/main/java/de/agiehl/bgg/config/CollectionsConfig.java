@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Builder
 @Data
-public class ForTradeConfig {
+public class CollectionsConfig {
 
     private final String url;
 
-    public static ForTradeConfig getDefault() {
-        return ForTradeConfig.builder()
+    public static CollectionsConfig getDefault() {
+        return CollectionsConfig.builder()
                 .url("https://api.geekdo.com/api/collections")
                 .build();
     }

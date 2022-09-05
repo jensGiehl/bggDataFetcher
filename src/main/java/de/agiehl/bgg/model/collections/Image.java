@@ -1,4 +1,4 @@
-package de.agiehl.bgg.model.fortrade;
+package de.agiehl.bgg.model.collections;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -7,14 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Status {
+public class Image {
 
-    private Boolean own;
+    private String micro;
 
-    private Boolean fortrade;
-
-    private Boolean wanttobuy;
-
-    private Boolean wanttoplay;
+    private String thumb;
 
 }

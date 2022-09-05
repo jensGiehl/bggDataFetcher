@@ -1,18 +1,16 @@
-package de.agiehl.bgg.model.fortrade;
+package de.agiehl.bgg.model.collections;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TextfieldObject {
+public class BggCollections {
 
-    private String value;
-
-    private String tstamp;
-
-    private String rendered;
+    private List<CollectionsItems> items;
 
 }

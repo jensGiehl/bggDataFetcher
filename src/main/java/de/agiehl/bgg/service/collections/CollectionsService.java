@@ -1,24 +1,24 @@
-package de.agiehl.bgg.service.fortrade;
+package de.agiehl.bgg.service.collections;
 
-import de.agiehl.bgg.config.ForTradeConfig;
+import de.agiehl.bgg.config.CollectionsConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;
-import de.agiehl.bgg.model.fortrade.ForTrade;
+import de.agiehl.bgg.model.collections.BggCollections;
 import de.agiehl.bgg.service.common.UrlBuilder;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
 @AllArgsConstructor
-public class ForTradeService {
+public class CollectionsService {
 
     private final BggHttpClient httpFetch;
 
-    private final ForTradeConfig config;
+    private final CollectionsConfig config;
 
-    public ForTrade loadForTrade(ForTradeQueryParameters parameters) {
+    public BggCollections loadForTrade(CollectionsQueryParameters parameters) {
         String url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
 
-        ForTrade forTradeItems = httpFetch.loadJsonFromUrl(url, ForTrade.class);
+        BggCollections forTradeItems = httpFetch.loadJsonFromUrl(url, BggCollections.class);
 
         log.info(() -> String.format("For Trade for '%s' loaded", parameters.getObjectid()));
 

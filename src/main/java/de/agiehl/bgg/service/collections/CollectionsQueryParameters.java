@@ -1,11 +1,11 @@
-package de.agiehl.bgg.service.fortrade;
+package de.agiehl.bgg.service.collections;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class ForTradeQueryParameters {
+public class CollectionsQueryParameters {
 
     @Builder.Default
     private boolean includeversions = true;
@@ -21,7 +21,6 @@ public class ForTradeQueryParameters {
     @Builder.Default
     private int showcount = 500;
 
-    @Builder.Default
-    private String status = "fortrade";
+    private String status;
 
 }
