@@ -4,11 +4,14 @@ import de.agiehl.bgg.config.BggConfig;
 import de.agiehl.bgg.httpclient.BggHttpClient;
 import de.agiehl.bgg.model.collection.CollectionItem;
 import de.agiehl.bgg.model.collection.CollectionsItems;
+import de.agiehl.bgg.model.collections.BggCollections;
 import de.agiehl.bgg.model.play.Plays;
 import de.agiehl.bgg.model.search.SearchItems;
 import de.agiehl.bgg.model.thing.Item;
 import de.agiehl.bgg.service.collection.CollectionQueryParameters;
 import de.agiehl.bgg.service.collection.CollectionService;
+import de.agiehl.bgg.service.collections.CollectionsQueryParameters;
+import de.agiehl.bgg.service.collections.CollectionsService;
 import de.agiehl.bgg.service.login.LoginCredentials;
 import de.agiehl.bgg.service.login.LoginService;
 import de.agiehl.bgg.service.play.PlayQueryParameters;
@@ -39,6 +42,8 @@ public class BggDataFetcher {
 
     private final SearchService searchService;
 
+    private final CollectionsService collectionsService;
+
     public BggDataFetcher() {
         this(BggConfig.getDefault());
     }
@@ -51,6 +56,11 @@ public class BggDataFetcher {
         thingService = new ThingService(httpClient, bggConfig.getThingConfig());
         playService = new PlayService(httpClient, bggConfig.getPlayConfig());
         searchService = new SearchService(httpClient, bggConfig.getSearchConfig());
+        collectionsService = new CollectionsService(httpClient, bggConfig.getCollectionsConfig());
+    }
+
+    public BggCollections loadCollections(Long objectid, String status) {
+        return collectionsService.loadForTrade(CollectionsQueryParameters.builder().status(status).objectid(objectid).build());
     }
 
     public SearchItems search(String searchQuery) {

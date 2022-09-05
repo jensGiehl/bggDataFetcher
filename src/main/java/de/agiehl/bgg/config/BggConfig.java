@@ -27,6 +27,9 @@ public class BggConfig {
     @Builder.Default
     private SearchConfig searchConfig = SearchConfig.getDefault();
 
+    @Builder.Default
+    private CollectionsConfig collectionsConfig = CollectionsConfig.getDefault();
+
     public static BggConfig getDefault() {
         return BggConfig.builder().build();
     }
