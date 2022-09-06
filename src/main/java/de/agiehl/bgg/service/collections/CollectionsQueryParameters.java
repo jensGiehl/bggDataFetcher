@@ -19,7 +19,7 @@ public class CollectionsQueryParameters {
     private int pageid = 1;
 
     @Builder.Default
-    private int showcount = 500;
+    private int showcount = 50;
 
     private String status;
 

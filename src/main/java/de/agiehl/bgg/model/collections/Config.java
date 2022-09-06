@@ -4,15 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BggCollections {
+public class Config {
 
-    private List<CollectionsItems> items;
+    private String objectlink;
 
-    private Config config;
+    private Integer numitems;
 
 }

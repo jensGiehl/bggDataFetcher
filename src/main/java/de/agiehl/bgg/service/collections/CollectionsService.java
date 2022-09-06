@@ -20,6 +20,14 @@ public class CollectionsService {
 
         BggCollections forTradeItems = httpFetch.loadJsonFromUrl(url, BggCollections.class);
 
+        while (forTradeItems.getItems().size() < forTradeItems.getConfig().getNumitems()) {
+            parameters.setPageid(parameters.getPageid() + 1);
+            url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
+            forTradeItems.getItems().addAll(
+                    httpFetch.loadJsonFromUrl(url, BggCollections.class).getItems()
+            );
+        }
+
         log.info(() -> String.format("For Trade for '%s' loaded", parameters.getObjectid()));
 
         return forTradeItems;
