@@ -20,13 +20,11 @@ import de.agiehl.bgg.service.search.SearchQueryParameters;
 import de.agiehl.bgg.service.search.SearchService;
 import de.agiehl.bgg.service.thing.ThingQueryParameters;
 import de.agiehl.bgg.service.thing.ThingService;
-import lombok.Getter;
 import lombok.extern.java.Log;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Getter
 @Log
 public class BggDataFetcher {
 
@@ -113,4 +111,23 @@ public class BggDataFetcher {
         return loadCollectionService.loadCollection(parameters);
     }
 
+    public CollectionService collection() {
+        return loadCollectionService;
+    }
+
+    public ThingService thing() {
+        return thingService;
+    }
+
+    public PlayService play() {
+        return playService;
+    }
+
+    public SearchService search() {
+        return searchService;
+    }
+
+    public CollectionsService collections() {
+        return collectionsService;
+    }
 }
