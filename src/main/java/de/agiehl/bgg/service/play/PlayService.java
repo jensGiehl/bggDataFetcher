@@ -12,6 +12,12 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Retrieves logged plays associated with a specific user or item.
+ * For further details, refer to the BoardGameGeek XML API2 documentation:
+ * <a href="https://boardgamegeek.com/wiki/page/BGG_XML_API2#toc11">BGG XML API2</a>
+ */
+
 @Log
 @AllArgsConstructor
 public class PlayService {

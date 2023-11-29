@@ -14,6 +14,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.IntStream;
 
+/**
+ * Retrieves information about various "things".
+ * For more details, refer to the BoardGameGeek XML API2 documentation:
+ * <a href="https://boardgamegeek.com/wiki/page/BGG_XML_API2#toc4">BGG XML API2</a>
+ */
+
 @Log
 @AllArgsConstructor
 public class ThingService {

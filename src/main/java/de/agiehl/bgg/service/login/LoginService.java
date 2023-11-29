@@ -5,6 +5,11 @@ import de.agiehl.bgg.httpclient.BggHttpClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
+/**
+ * This service offers user authentication for accessing private information.
+ * Login is required to access private information.
+ */
+
 @Log
 @AllArgsConstructor
 public class LoginService {

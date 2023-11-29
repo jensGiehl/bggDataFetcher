@@ -7,6 +7,9 @@ import de.agiehl.bgg.service.common.UrlBuilder;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 
+/**
+ * Conducts a search on boardgamegeek.com.
+ */
 @Log
 @AllArgsConstructor
 public class SearchService {
