@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SearchResultName {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String type;
+  @JacksonXmlProperty(isAttribute = true)
+  private String type;
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String value;
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 }

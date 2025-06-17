@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Price {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String currency;
+  @JacksonXmlProperty(isAttribute = true)
+  private String currency;
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String value;
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 }

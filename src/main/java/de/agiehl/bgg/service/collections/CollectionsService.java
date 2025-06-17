@@ -11,26 +11,25 @@ import lombok.extern.java.Log;
 @AllArgsConstructor
 public class CollectionsService {
 
-    private final BggHttpClient httpFetch;
+  private final BggHttpClient httpFetch;
 
-    private final CollectionsConfig config;
+  private final CollectionsConfig config;
 
-    public BggCollections loadForTrade(CollectionsQueryParameters parameters) {
-        String url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
+  public BggCollections loadForTrade(CollectionsQueryParameters parameters) {
+    String url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
 
-        BggCollections forTradeItems = httpFetch.loadJsonFromUrl(url, BggCollections.class);
+    BggCollections forTradeItems = httpFetch.loadJsonFromUrl(url, BggCollections.class);
 
-        while (forTradeItems.getItems().size() < forTradeItems.getConfig().getNumitems()) {
-            parameters.setPageid(parameters.getPageid() + 1);
-            url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
-            forTradeItems.getItems().addAll(
-                    httpFetch.loadJsonFromUrl(url, BggCollections.class).getItems()
-            );
-        }
-
-        log.info(() -> String.format("For Trade for '%s' loaded", parameters.getObjectid()));
-
-        return forTradeItems;
+    while (forTradeItems.getItems().size() < forTradeItems.getConfig().getNumitems()) {
+      parameters.setPageid(parameters.getPageid() + 1);
+      url = UrlBuilder.getInstance().createUrlFromObject(config.getUrl(), parameters);
+      forTradeItems
+          .getItems()
+          .addAll(httpFetch.loadJsonFromUrl(url, BggCollections.class).getItems());
     }
 
+    log.info(() -> String.format("For Trade for '%s' loaded", parameters.getObjectid()));
+
+    return forTradeItems;
+  }
 }

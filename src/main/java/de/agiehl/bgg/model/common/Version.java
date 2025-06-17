@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Version {
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private VersionItem item;
-
+  @JacksonXmlElementWrapper(useWrapping = false)
+  private VersionItem item;
 }

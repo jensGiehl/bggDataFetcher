@@ -9,20 +9,19 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Status {
 
-    private Boolean own;
+  private Boolean own;
 
-    private Boolean fortrade;
+  private Boolean fortrade;
 
-    private Boolean wanttobuy;
+  private Boolean wanttobuy;
 
-    private Boolean wanttoplay;
+  private Boolean wanttoplay;
 
-    private Boolean wishlist;
+  private Boolean wishlist;
 
-    private Boolean prevowned;
+  private Boolean prevowned;
 
-    private Boolean want;
+  private Boolean want;
 
-    private Boolean preordered;
-
+  private Boolean preordered;
 }

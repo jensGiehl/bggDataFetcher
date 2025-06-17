@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SearchItem {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String type;
+  @JacksonXmlProperty(isAttribute = true)
+  private String type;
 
-    @JacksonXmlProperty(isAttribute = true)
-    private Long id;
+  @JacksonXmlProperty(isAttribute = true)
+  private Long id;
 
-    @JacksonXmlElementWrapper(useWrapping = false)
-    private SearchResultName name;
+  @JacksonXmlElementWrapper(useWrapping = false)
+  private SearchResultName name;
 
-    @JacksonXmlElementWrapper(useWrapping = true)
-    private IntValueObject yearpublished;
+  @JacksonXmlElementWrapper(useWrapping = true)
+  private IntValueObject yearpublished;
 }

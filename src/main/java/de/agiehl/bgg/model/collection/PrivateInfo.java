@@ -9,30 +9,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PrivateInfo {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String pp_currency;
+  @JacksonXmlProperty(isAttribute = true)
+  private String pp_currency;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String pricepaid;
+  @JacksonXmlProperty(isAttribute = true)
+  private String pricepaid;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String cv_currency;
+  @JacksonXmlProperty(isAttribute = true)
+  private String cv_currency;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String currvalue;
+  @JacksonXmlProperty(isAttribute = true)
+  private String currvalue;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Integer quantity;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer quantity;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String acquisitiondate;
+  @JacksonXmlProperty(isAttribute = true)
+  private String acquisitiondate;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String acquiredfrom;
+  @JacksonXmlProperty(isAttribute = true)
+  private String acquiredfrom;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String inventorylocation;
+  @JacksonXmlProperty(isAttribute = true)
+  private String inventorylocation;
 
-	@JacksonXmlElementWrapper(useWrapping = true)
-	private String privatecomment;
+  @JacksonXmlElementWrapper(useWrapping = true)
+  private String privatecomment;
 }

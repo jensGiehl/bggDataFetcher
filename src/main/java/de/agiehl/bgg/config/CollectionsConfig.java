@@ -7,12 +7,9 @@ import lombok.Data;
 @Data
 public class CollectionsConfig {
 
-    private final String url;
+  private final String url;
 
-    public static CollectionsConfig getDefault() {
-        return CollectionsConfig.builder()
-                .url("https://api.geekdo.com/api/collections")
-                .build();
-    }
-
+  public static CollectionsConfig getDefault() {
+    return CollectionsConfig.builder().url("https://api.geekdo.com/api/collections").build();
+  }
 }

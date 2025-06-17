@@ -1,7 +1,6 @@
 package de.agiehl.bgg.model.play;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Subtype {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String value;
-
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 }

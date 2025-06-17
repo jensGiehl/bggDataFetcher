@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Name {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Long sortindex;
+  @JacksonXmlProperty(isAttribute = true)
+  private Long sortindex;
 
-	@JacksonXmlText
-	private String name;
-
+  @JacksonXmlText private String name;
 }

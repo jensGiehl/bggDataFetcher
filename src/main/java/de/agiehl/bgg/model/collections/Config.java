@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Config {
 
-    private String objectlink;
+  private String objectlink;
 
-    private Integer numitems;
-
+  private Integer numitems;
 }

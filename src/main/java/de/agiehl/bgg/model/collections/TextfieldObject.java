@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TextfieldObject {
 
-    private String value;
+  private String value;
 
-    private String tstamp;
+  private String tstamp;
 
-    private String rendered;
-
+  private String rendered;
 }

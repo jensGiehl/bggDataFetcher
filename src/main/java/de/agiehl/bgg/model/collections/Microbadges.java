@@ -10,56 +10,56 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Microbadges {
 
-    private Long badgeid;
+  private Long badgeid;
 
-    private Long userid;
+  private Long userid;
 
-    private String tstamp;
+  private String tstamp;
 
-    private String active;
+  private String active;
 
-    private String url;
+  private String url;
 
-    private String slot;
+  private String slot;
 
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private String filename;
+  private String filename;
 
-    private String extension;
+  private String extension;
 
-    private String animated;
+  private String animated;
 
-    private String version;
+  private String version;
 
-    private String badgestatus;
+  private String badgestatus;
 
-    private String desc;
+  private String desc;
 
-    private String mouseover;
+  private String mouseover;
 
-    private String cost;
+  private String cost;
 
-    @JsonProperty("private")
-    private String privateFlag;
+  @JsonProperty("private")
+  private String privateFlag;
 
-    private String customurl;
+  private String customurl;
 
-    private String baseurl;
+  private String baseurl;
 
-    private String group;
+  private String group;
 
-    private String subgroup;
+  private String subgroup;
 
-    private Long groupid;
+  private Long groupid;
 
-    private String coupon;
+  private String coupon;
 
-    private String username;
+  private String username;
 
-    private Integer numsold;
+  private Integer numsold;
 
-    private String newfn;
+  private String newfn;
 }

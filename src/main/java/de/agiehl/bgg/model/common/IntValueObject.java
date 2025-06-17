@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class IntValueObject {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private Integer value;
-
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer value;
 }

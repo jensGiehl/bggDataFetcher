@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ListingLink {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String href;
+  @JacksonXmlProperty(isAttribute = true)
+  private String href;
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String title;
+  @JacksonXmlProperty(isAttribute = true)
+  private String title;
 }

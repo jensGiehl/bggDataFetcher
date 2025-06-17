@@ -9,54 +9,53 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CollectionsItems {
 
-    private Long collid;
+  private Long collid;
 
-    private Long versionid;
+  private Long versionid;
 
-    private Version version;
+  private Version version;
 
-    private String objecttype;
+  private String objecttype;
 
-    private Long objectid;
+  private Long objectid;
 
-    private Long imageid;
+  private Long imageid;
 
-    private Long publisherid;
+  private Long publisherid;
 
-    private Long languageid;
+  private Long languageid;
 
-    private Integer year;
+  private Integer year;
 
-    private String other;
+  private String other;
 
-    private String barcode;
+  private String barcode;
 
-    private User user;
+  private User user;
 
-    private String objectname;
+  private String objectname;
 
-    private String sunglasses;
+  private String sunglasses;
 
-    private Status status;
+  private Status status;
 
-    private String statusTstamp;
+  private String statusTstamp;
 
-    private Integer wishlistpriority;
+  private Integer wishlistpriority;
 
-    private Textfield textfield;
+  private Textfield textfield;
 
-    private String rating;
+  private String rating;
 
-    private String ratingTstamp;
+  private String ratingTstamp;
 
-    private String tstamp;
+  private String tstamp;
 
-    private String postdate;
+  private String postdate;
 
-    private String lastmodified;
+  private String lastmodified;
 
-    private String commentTstamp;
+  private String commentTstamp;
 
-    private String reviewTstamp;
-
+  private String reviewTstamp;
 }

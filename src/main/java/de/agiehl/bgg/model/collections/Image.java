@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Image {
 
-    private String micro;
+  private String micro;
 
-    private String thumb;
-
+  private String thumb;
 }

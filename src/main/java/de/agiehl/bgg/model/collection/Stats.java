@@ -10,25 +10,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Stats {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Integer minplayers;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer minplayers;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Integer maxplayers;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer maxplayers;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Integer minplaytime;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer minplaytime;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Integer maxplaytime;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer maxplaytime;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Integer playingtime;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer playingtime;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private long numowned;
+  @JacksonXmlProperty(isAttribute = true)
+  private long numowned;
 
-	@JacksonXmlElementWrapper(useWrapping = false)
-	private Rating rating;
-
+  @JacksonXmlElementWrapper(useWrapping = false)
+  private Rating rating;
 }

@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ValueObject {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String value;
-
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 }

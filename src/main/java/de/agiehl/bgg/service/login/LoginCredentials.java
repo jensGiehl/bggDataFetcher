@@ -10,8 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class LoginCredentials {
 
-	private final String username;
+  private final String username;
 
-	@ToString.Exclude
-	private final String password;
+  @ToString.Exclude private final String password;
 }

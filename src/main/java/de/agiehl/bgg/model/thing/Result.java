@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Result {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private Integer level;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer level;
 
-    @JacksonXmlProperty(isAttribute = true)
-    private String value;
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 
-    @JacksonXmlProperty(isAttribute = true)
-    private Long numvotes;
-
+  @JacksonXmlProperty(isAttribute = true)
+  private Long numvotes;
 }

@@ -8,22 +8,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Rank {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String type;
+  @JacksonXmlProperty(isAttribute = true)
+  private String type;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Long id;
+  @JacksonXmlProperty(isAttribute = true)
+  private Long id;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String name;
+  @JacksonXmlProperty(isAttribute = true)
+  private String name;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String friendlyname;
+  @JacksonXmlProperty(isAttribute = true)
+  private String friendlyname;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String value;
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String bayesaverage;
-
+  @JacksonXmlProperty(isAttribute = true)
+  private String bayesaverage;
 }

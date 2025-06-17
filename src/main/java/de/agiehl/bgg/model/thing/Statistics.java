@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Statistics {
 
-    @JacksonXmlProperty(isAttribute = true)
-    private Integer page;
+  @JacksonXmlProperty(isAttribute = true)
+  private Integer page;
 
-    @JacksonXmlElementWrapper(useWrapping = false)
-    private Rating ratings;
+  @JacksonXmlElementWrapper(useWrapping = false)
+  private Rating ratings;
 }

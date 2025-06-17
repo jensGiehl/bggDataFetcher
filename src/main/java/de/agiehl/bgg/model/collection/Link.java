@@ -8,16 +8,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Link {
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String type;
+  @JacksonXmlProperty(isAttribute = true)
+  private String type;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private Long id;
+  @JacksonXmlProperty(isAttribute = true)
+  private Long id;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String value;
+  @JacksonXmlProperty(isAttribute = true)
+  private String value;
 
-	@JacksonXmlProperty(isAttribute = true)
-	private String inbound;
-
+  @JacksonXmlProperty(isAttribute = true)
+  private String inbound;
 }

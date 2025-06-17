@@ -7,11 +7,9 @@ import lombok.Data;
 @Data
 public class LoginConfig {
 
-    private final String url;
+  private final String url;
 
-    public static LoginConfig getDefault() {
-        return LoginConfig.builder()
-                .url("https://boardgamegeek.com/login/api/v1")
-                .build();
-    }
+  public static LoginConfig getDefault() {
+    return LoginConfig.builder().url("https://boardgamegeek.com/login/api/v1").build();
+  }
 }

@@ -7,20 +7,15 @@ import lombok.Data;
 @Builder
 public class CollectionsQueryParameters {
 
-    @Builder.Default
-    private boolean includeversions = true;
+  @Builder.Default private boolean includeversions = true;
 
-    private Long objectid;
+  private Long objectid;
 
-    @Builder.Default
-    private String objecttype = "thing";
+  @Builder.Default private String objecttype = "thing";
 
-    @Builder.Default
-    private int pageid = 1;
+  @Builder.Default private int pageid = 1;
 
-    @Builder.Default
-    private int showcount = 50;
+  @Builder.Default private int showcount = 50;
 
-    private String status;
-
+  private String status;
 }
