@@ -40,7 +40,7 @@
 		<spotless.version>2.44.5</spotless.version>
 		<lombok.version>1.18.38</lombok.version>
 		<jackson.version>2.19.1</jackson.version>
-		<junit.version>5.13.1</junit.version>
+		<junit.version>5.13.2</junit.version>
 		<assertj.version>3.27.3</assertj.version>
 	</properties>
 
