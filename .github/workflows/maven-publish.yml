@@ -41,6 +41,6 @@ jobs:
               "username": "${{ secrets.OSSRH_USERNAME }}",
               "password": "${{ secrets.OSSRH_TOKEN }}"
             }]
-      - run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      - run: mvn deploy
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
