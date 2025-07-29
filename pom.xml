@@ -31,7 +31,7 @@
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <spotless.version>2.46.1</spotless.version>
         <lombok.version>1.18.38</lombok.version>
-        <jackson.version>2.19.1</jackson.version>
+        <jackson.version>2.19.2</jackson.version>
         <junit.version>5.13.4</junit.version>
         <assertj.version>3.27.3</assertj.version>
     </properties>
