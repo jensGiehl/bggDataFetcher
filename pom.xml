@@ -33,7 +33,7 @@
         <lombok.version>1.18.38</lombok.version>
         <jackson.version>2.19.2</jackson.version>
         <junit.version>5.13.4</junit.version>
-        <assertj.version>3.27.3</assertj.version>
+        <assertj.version>3.27.4</assertj.version>
     </properties>
 
     <dependencies>
